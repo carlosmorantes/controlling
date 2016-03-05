@@ -1,8 +1,8 @@
 class ExpensesController < ApplicationController
-
+  helper_method :sort_column, :sort_direction
   # GET /expenses
   def index
-    @expenses = Expense.all
+    @expenses = Expense.order(sort_column + " " + sort_direction) # SELECT "expenses".* FROM "expenses"  ORDER BY date asc
   end
   # GET /expenses/:id
   def show
@@ -54,6 +54,14 @@ class ExpensesController < ApplicationController
   	day = params[:expense]["date(3i)"]
   	date = "#{year}-#{month}-#{day}"
     params.require(:expense).permit(:date,:article, :price, :note)	# objeto params
+  end
+
+  def sort_column
+    Expense.column_names.include?(params[:sort]) ? params[:sort] : "date" 
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc" # direction includes two options. if not inlcuded, the default asc
   end
 
 end
