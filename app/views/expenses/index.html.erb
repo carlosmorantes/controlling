@@ -1,0 +1,31 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Produkt</th>
+        <th>Summe</th>
+        <th>Note</th>
+        <th colspan="2">Aktion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @expenses.each do |a| %>
+        <tr>
+          <td><%= a.date %></td>
+          <td><%= a.article %></td>
+          <td><%= a.price %></td>
+          <td><%= a.note %></td>
+          <td >
+            <%= link_to "Ändern", edit_expense_path(a), class: "btn btn-default alert-info" %>
+            <%= link_to "Löschen", a, method: :delete, :data => {:confirm => "Bist du Sicher?"}, class: "btn btn-default alert-danger" %>            
+          </td>
+        </tr>
+      <%end%>
+      <tr><td><%= Expense.sum(:price) %></td></tr>
+    </tbody>
+</table>
+
+
+
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Controlling</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+  <div class="row header">
+	  <div class="col-md-12">Logo</div>
+  </div>
+	<div class="row">
+		<div class="col-md-2">
+			<ul class="nav nav-pills nav-stacked">
+              <li role="presentation" class="active"><a href="/expenses">Home</a></li>
+              <li role="presentation"><a href="/expenses/new">Neu</a></li>
+              <li role="presentation"><a href="#">Messages</a></li>
+             </ul>
+		</div>
+		<div class="col-md-10">
+			<%= yield %>
+		</div>
+
+	</div>
+  <div class="row">
+    <footer class="text-center">
+      <p>Footer Text</p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-03-05
+  price: 9.99
+  article: MyString
+  note: MyText
+
+two:
+  date: 2016-03-05
+  price: 9.99
+  article: MyString
+  note: MyText

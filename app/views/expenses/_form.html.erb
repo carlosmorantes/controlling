@@ -1,0 +1,30 @@
+<% name ||= "Ändern" %>
+
+<h1><%= name %> Artikel </h1>
+
+<%= form_for(@expense) do |f| %>
+  <!--if validations are not fullfiled then show errors -->
+  <% @expense.errors.full_messages.each do |message| %>
+    <div class="alert alert-warning">
+      <%= message %>
+    </div>
+  <%end%>
+  <div class="form-group">
+    <%= f.label :Datum %>:
+    <%= f.date_select :date, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :Produkt %>:
+    <%= f.text_field :article, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :Summe %>:
+    <%= f.text_field :price, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :Note %>:
+    <%= f.text_area :note, class: "form-control" %>
+  </div>
+  
+  <%= f.submit "Submit", class: "btn btn-default" %>
+<%end%>
