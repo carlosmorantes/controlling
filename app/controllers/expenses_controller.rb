@@ -1,9 +1,20 @@
 class ExpensesController < ApplicationController
   helper_method :sort_column, :sort_direction
+
   # GET /expenses
   def index
-    @expenses = Expense.order(sort_column + " " + sort_direction) # SELECT "expenses".* FROM "expenses"  ORDER BY date asc
+    month = params[:month]
+    if month.present?
+      @expenses = Expense.where("date >= :start_date AND date <= :end_date", 
+                               start_date: '2016-'+month+'-01', 
+                               end_date: '2016-'+month+'-31').order(sort_column+' '+sort_direction)
+      @sum_per_month = @expenses.sum(:price)      
+    else
+      @expenses = Expense.order('date')
+    end
+
   end
+
   # GET /expenses/:id
   def show
    @expense = Expense.find(params[:id])
@@ -13,6 +24,7 @@ class ExpensesController < ApplicationController
   def new
     @expense = Expense.new
   end
+
   #POST /expenses
   def create
   	@expense = Expense.create(expenses_params)
@@ -43,7 +55,7 @@ class ExpensesController < ApplicationController
   def destroy
     @expense = Expense.find(params[:id])
     @expense.destroy
-    redirect_to expenses_path
+    redirect_to :back
   end
 
   private	
@@ -61,7 +73,9 @@ class ExpensesController < ApplicationController
   end
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc" # direction includes two options. if not inlcuded, the default asc
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
+
+  
 
 end

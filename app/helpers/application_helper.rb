@@ -1,7 +1,8 @@
 module ApplicationHelper
 	def sortable(column, title)
-	  
-	  direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-      link_to title, :sort => column, :direction => direction
-	end
+    	direction = sort_direction == 'asc' ? 'desc' : 'asc'    	
+    	column = sort_column
+    	link_to title, params.merge(column: column, direction: direction)      
+    end    
+	
 end
