@@ -15,7 +15,8 @@
 		<div class="col-md-2">
 			<ul class="nav nav-pills nav-stacked">
               <li role="presentation"><a href="/expenses/new">Neu</a></li>
-              <li role="presentation"><%= link_to 'März', controller: "expenses", month: '03' %></li>
+              <li role="presentation"><% out = get_month %><%= link_to out[:month_name], controller: "expenses", month: out[:month_number].to_s %></li>
+              <li><%=  %></li>
              </ul>
 		</div>
 		<div class="col-md-10">
