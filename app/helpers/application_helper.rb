@@ -7,26 +7,24 @@ module ApplicationHelper
 
     def get_month      
       translator = {
-      	january: "Januar",
-      	february: "Februar",
-      	march: 'März',
-      	april: "April",
-      	may: "Mai",
-      	june: "June",
-      	july: "Juli",
-      	august: "August",
-      	september: "September",
-      	october: "Oktober",
-      	november: "November",
-      	december: "Dezember"
-      }
-      month = Date.today.strftime("%B").downcase.to_sym
-      month_name_de = translator[month]
+      	1 => ["Januar", "01"],
+      	2 => ["Februar", "02"],
+      	3 => ['März', "03"],
+      	4 => ["April", "04"],
+      	5 => ["Mai", "05"],
+      	6 => ["June", "06"],
+      	7 => ["Juli", "07"],
+      	8 => ["August", "08"],
+      	9 => ["September", "09"],
+      	10 => ["Oktober", "10"],
+      	11 => ["November", "11"],
+      	12 => ["Dezember", "12"]
+      }     
       month_number = Date.today.strftime("%m")
       year = Date.today.strftime("%Y")
       return result = { 
-      	  month_name: month_name_de, 
-          month_number: month_number }            
+      	  translator: translator, 
+          month_number: month_number.to_i }            
     end   
 	
 end

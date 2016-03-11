@@ -1,17 +1,34 @@
 $color-header: #337AB7;
 $color-footer: #337AB7;
+$color-text-header: white;
 
+
+/*==================
+  HEADER
+  ==================*/
+  
 .header{
   background-color: $color-header;
   margin-bottom: 5%;
   border-radius: 4px;
-  height: 50px;	
+  height: 50px;
+  color: $color-text-header;	
 
 }
+
+.header li a {
+  color: $color-text-header;		
+}
+
 
 .table th, td{
 	text-align: center;
 }
+
+
+/*==================
+  FOOTER
+  ==================*/
 
 /* Set black background color, white text and some padding */
 footer {

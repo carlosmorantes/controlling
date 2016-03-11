@@ -8,27 +8,52 @@
 </head>
 <body>
 <div class="container">
+
   <div class="row header">
-	  <div class="col-md-12">Logo</div>
+	  <div class="col-md-6">Logo</div>
+    <div class="col-md-3" style="text-align:right; list-style:none;">
+      <% if user_signed_in? %>
+        <li role='presentation'><%= link_to "Abmelden" , destroy_user_session_path, method: :delete %></li> 
+      <%else%>
+        <li >
+          <%= link_to "Anmelden", new_user_session_path %> <!--No es necesario poner el metodo GET-->
+        </li>
+        <li >
+          <%= link_to "Konto erstellen", new_user_registration_path %>
+        </li>
+      <%end%>
+    </div>
   </div>
-	<div class="row">
+  
+  
+
+	<!--Menu-->
+  <div class="row">
 		<div class="col-md-2">
 			<ul class="nav nav-pills nav-stacked">
-              <li role="presentation"><a href="/expenses/new">Neu</a></li>
-              <li role="presentation"><% out = get_month %><%= link_to out[:month_name], controller: "expenses", month: out[:month_number].to_s %></li>
-              <li><%=  %></li>
-             </ul>
+        <li role="presentation"><a href="/expenses/new">Neu</a></li>
+        <% out = get_month %>      
+        <% 1.upto(out[:month_number]) do |i| %> 
+          <li role="presentation"><%= link_to out[:translator][i][0], controller: "/expenses", month: out[:translator][i][1] %></li>
+        <%end%>  
+        
+      </ul>
 		</div>
+  <!--End menu-->
 		<div class="col-md-10">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
 			<%= yield %>
 		</div>
 
 	</div>
+
   <div class="row">
     <footer class="text-center">
       <p>Footer Text</p>
     </footer>
   </div>
+
 </div>
 
 </body>
