@@ -10,10 +10,10 @@ class ExpensesController < ApplicationController
     if month.present?
       @expenses = Expense.where("date >= :start_date AND date <= :end_date", 
                                start_date: '2016-'+month+'-01', 
-                               end_date: '2016-'+month+'-31').order(sort_column+' '+sort_direction)
-      @sum_per_month = @expenses.sum(:price)      
+                               end_date: '2016-'+month+'-31').order(sort_column+' '+sort_direction).page(params[:page]).per(10)
+      @sum_per_month = @expenses.sum(:price)    
     else
-      @expenses = Expense.order('date')
+      @expenses = Expense.order('date').page(params[:page]).per(10)  
     end
 
   end

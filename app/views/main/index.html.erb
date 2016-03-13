@@ -1,4 +1,6 @@
 
-<h1>Willkommen</h1>
+<% if user_signed_in? %>
+  <h1>Willkommen <%= current_user.email %></h1>
+<%end%>
 
 
