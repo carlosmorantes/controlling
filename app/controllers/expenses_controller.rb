@@ -1,5 +1,8 @@
 class ExpensesController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_action :authenticate_user!, except: [:index] # helper from devise
+  before_action :set_expense, except: [:index, :new, :create]
+
 
   # GET /expenses
   def index
@@ -17,7 +20,6 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/:id
   def show
-   @expense = Expense.find(params[:id])
   end
 
   #GET /expenses/new
@@ -39,12 +41,10 @@ class ExpensesController < ApplicationController
 
   # GET expenses/:id/edit
   def edit
-    @expense = Expense.find(params[:id])
   end
 
   # PUT update/:id
   def update
-    @expense = Expense.find(params[:id])
     if @expense.update(expenses_params)
       redirect_to @expense
     else
@@ -52,13 +52,16 @@ class ExpensesController < ApplicationController
     end	
   end
 
-  def destroy
-    @expense = Expense.find(params[:id])
+  def destroy    
     @expense.destroy
     redirect_to :back
   end
 
   private	
+
+  def set_expense
+    @expense = Expense.find(params[:id])
+  end
 
   def expenses_params # nombre por convecion
   	year = params[:expense]["date(1i)"]
