@@ -32,7 +32,7 @@ class ExpensesController < ApplicationController
   	@expense = Expense.create(expenses_params)
 
     if @expense
-      redirect_to @expense	                   		
+      redirect_to @expense, notice: 'Artikel erfolgreich angelegt'	                   	
     else
   	  render :new
   	end
@@ -46,7 +46,7 @@ class ExpensesController < ApplicationController
   # PUT update/:id
   def update
     if @expense.update(expenses_params)
-      redirect_to @expense
+      redirect_to @expense, notice: 'Artikel erfolgreich geändert'  
     else
       render :edit
     end	
@@ -54,7 +54,7 @@ class ExpensesController < ApplicationController
 
   def destroy    
     @expense.destroy
-    redirect_to :back
+    redirect_to :back, notice: 'Artikel erfolgreich gelöscht' 
   end
 
   private	
