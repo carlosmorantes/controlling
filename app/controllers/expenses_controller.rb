@@ -13,7 +13,7 @@ class ExpensesController < ApplicationController
                                end_date: '2016-'+month+'-31').order(sort_column+' '+sort_direction).page(params[:page]).per(10)
       @sum_per_month = @expenses.sum(:price)    
     else
-      @expenses = Expense.order('date').page(params[:page]).per(10)  
+      @expenses = Expense.order(sort_column+' '+sort_direction).page(params[:page]).per(10)  
     end
 
   end

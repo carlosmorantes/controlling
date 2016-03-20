@@ -1,8 +1,7 @@
 module ApplicationHelper
 	def sortable(column, title)
-    	direction = sort_direction == 'asc' ? 'desc' : 'asc'    	
-    	column = sort_column
-    	link_to title, params.merge(column: column, direction: direction)      
+    	direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    	link_to title, params.merge(sort: column, direction: direction)      
     end 
 
     def get_month      
