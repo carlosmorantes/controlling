@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
-  helper_method :sort_column, :sort_direction
+  include ExpensesHelper
+  helper_method :sort_column, :sort_direction  
   before_action :authenticate_user!, except: [:index] # helper from devise
   before_action :set_expense, except: [:index, :new, :create]
 
@@ -7,10 +8,11 @@ class ExpensesController < ApplicationController
   # GET /expenses
   def index
     month = params[:month]
+    days = get_number_of_days(month,2016)
     if month.present?
       @expenses = Expense.where("date >= :start_date AND date <= :end_date", 
                                start_date: '2016-'+month+'-01', 
-                               end_date: '2016-'+month+'-31').order(sort_column+' '+sort_direction).page(params[:page]).per(10)
+                               end_date: '2016-'+month+'-'+days).order(sort_column+' '+sort_direction).page(params[:page]).per(10)
       @sum_per_month = @expenses.sum(:price)    
     else
       @expenses = Expense.order(sort_column+' '+sort_direction).page(params[:page]).per(10)  
