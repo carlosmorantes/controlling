@@ -4,6 +4,7 @@ class ExpensesController < ApplicationController
   before_action :authenticate_user!, except: [:index] # helper from devise
   before_action :set_expense, except: [:index, :new, :create]
 
+  
 
   # GET /expenses
   def index
