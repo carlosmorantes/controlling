@@ -47,3 +47,20 @@ footer {
     color: #468847;
     text-align: left;
  }
+
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 767px) { 
+  #menu-desktop{
+     display:none;
+
+  } 
+  
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 991px) { 
+  #menu-smartphone{
+     display:none;
+
+  } 
+}
