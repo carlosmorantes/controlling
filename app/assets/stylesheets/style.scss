@@ -6,54 +6,12 @@ $color-text: #9D9D9D;
 	text-align: center;
 }
 
-
-/*==================
-  FOOTER
-  ==================*/
-
-/* Set black background color, white text and some padding */
-footer {
-  background-color: $color-footer;
-  color: $color-text;
-  padding: 15px;
-  margin-top: 5%;
-}
-
-/*flash*/
-.alert-error {
-    background-color: #f2dede;
-    border-color: #eed3d7;
-    color: #b94a48;
-    text-align: left;
- }
-
-.alert-alert {
-    background-color: #f2dede;
-    border-color: #eed3d7;
-    color: #b94a48;
-    text-align: left;
- }
-
-.alert-success {
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    color: #468847;
-    text-align: left;
- }
-
-.alert-notice {
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    color: #468847;
-    text-align: left;
- }
-
 /* Small devices (tablets, 768px and up) */
 @media (max-width: 767px) { 
   #menu-desktop{
      display:none;
 
-  } 
+  }
   
 }
 
@@ -62,5 +20,6 @@ footer {
   #menu-smartphone{
      display:none;
 
-  } 
+  }   
 }
+

@@ -15,32 +15,22 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href=>"#"} Navbar
-          
-          %button{ :type => "button", :class => "navbar-toggle", "data-toggle"=> "collapse", "data-target"=>".test"}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar 
+          %a.navbar-brand{:href=>"#"} Navbar     
             
 
         .collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li= link_to "Abmelden", destroy_user_session_path, method: :delete
+              %li.hidden-sm.hidden-md.hidden-lg
+                %a{:href => "/expenses/new"} Neu
+              - out = get_month
+              - 1.upto(out[:month_number]) do |i|
+                %li.hidden-sm.hidden-md.hidden-lg= link_to out[:translator][i][0], controller: "/expenses", month: out[:translator][i][1]
             - else
               %li= link_to "Konto erstellen", new_user_registration_path
               -#No es necesario poner el metodo GET
-              %li= link_to "Anmelden", new_user_session_path
-
-         
-          
-        .collapse.test
-          %ul.nav.navbar-nav
-            %li.active
-              %a{:href => "/expenses/new"} Neu
-            - out = get_month
-            - 1.upto(out[:month_number]) do |i|
-              %li= link_to out[:translator][i][0], controller: "/expenses", month: out[:translator][i][1]
+              %li= link_to "Anmelden", new_user_session_path       
                  
        
     /End Topnav
