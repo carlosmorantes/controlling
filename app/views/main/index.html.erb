@@ -1,6 +1,10 @@
 
 <% if user_signed_in? %>
-  <h1>Willkommen <%= current_user.email.capitalize %></h1>
+  <% if current_user.first_name.blank? %>
+    <h1>Willkommen <%= current_user.email %></h1> 
+  <% else %>
+    <h1>Willkommen <%= current_user.first_name.capitalize %></h1>
+  <% end %>  
 <%end%>
 
 

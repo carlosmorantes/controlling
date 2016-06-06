@@ -31,7 +31,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
 
       # My own fields
-      t.string :name
       t.string :permission_level
 
       t.timestamps null: false
