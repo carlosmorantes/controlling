@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  
-  
+
+
   devise_for :users
   devise_scope :user do
     root to: "devise/sessions#new"
   end
   resources :expenses
   get 'main/index'
+  get 'admin/users'
 =begin RESTful
   get "/expenses" index
   post "/expenses" create
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   put "/expenses/id" updtate
 =end
 
-  
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  
+
 
 
 end
