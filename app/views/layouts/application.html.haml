@@ -2,27 +2,24 @@
 %html
   %head
     %title Controlling
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true 
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true 
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    %meta{'name' => 'viewport', "content" => "width=device-width, initial-scale=1"} 
+    %meta{'name' => 'viewport', "content" => "width=device-width, initial-scale=1"}
   %body
     = render 'layouts/navbar'
     .container
       /menu
       .row
         .col-md-2
-          %ul.nav.nav-pills.nav-stacked.red#menu-desktop
-            %li.active
-              %a{:href => "/expenses/new"} Neu
-            - out = get_month
-            - 1.upto(out[:month_number]) do |i|
-              %li= link_to out[:translator][i][0], controller: "/expenses", month: out[:translator][i][1]
-                         
+          - if permission?
+            %ul.nav.nav-pills.nav-stacked.red#menu-desktop
+              %li.active
+                %a{:href => "/expenses/new"} Neu
+              - out = get_month
+              - 1.upto(out[:month_number]) do |i|
+                %li= link_to out[:translator][i][0], controller: "/expenses", month: out[:translator][i][1]
+
         .col-md-10
           = render 'layouts/messages'
           = yield
-
-
-                  
-    

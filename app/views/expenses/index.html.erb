@@ -18,7 +18,7 @@
           <td><%= a.note %></td>
           <td >
             <%= link_to "Ändern", edit_expense_path(a), class: "btn btn-default alert-info" %>
-            <%= link_to "Löschen", a, method: :delete, :data => {:confirm => "Bist du Sicher?"}, class: "btn btn-default alert-danger" %>            
+            <%= link_to "Löschen", a, method: :delete, :data => {:confirm => "Bist du Sicher?"}, class: "btn btn-default alert-danger" %>
           </td>
         </tr>
       <%end%>
@@ -27,6 +27,3 @@
 </table>
 
 <%= paginate @expenses %>
-
-
-
