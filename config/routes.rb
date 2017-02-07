@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :expenses
   get 'main/index'
   get 'admin/users'
+  get 'calculator/index' # link for Julio to calculate ML costs
 =begin RESTful
   get "/expenses" index
   post "/expenses" create
