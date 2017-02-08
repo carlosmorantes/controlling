@@ -5,11 +5,11 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{:href=>"/"} Navbar   
+      %a.navbar-brand{:href=>"/"} Navbar
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li= link_to "Passwort ändern", edit_user_registration_path
+          /%li#= link_to "Passwort ändern", edit_user_registration_path# until mailer is implemented
           %li= link_to "Abmelden", destroy_user_session_path, method: :delete
           %li.hidden-sm.hidden-md.hidden-lg
             %a{:href => "/expenses/new"} Neu
@@ -19,6 +19,4 @@
         - else
           %li= link_to "Konto erstellen", new_user_registration_path
           -#No es necesario poner el metodo GET
-          %li= link_to "Anmelden", new_user_session_path       
-             
-   
+          %li= link_to "Anmelden", new_user_session_path
