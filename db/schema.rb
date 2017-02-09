@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606184756) do
+ActiveRecord::Schema.define(version: 20170209200854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "amazons", force: :cascade do |t|
+    t.decimal  "bank_dollar_price"
+    t.decimal  "trm_dollar_price"
+    t.float    "tc_percentage"
+    t.float    "iva"
+    t.float    "customs_duty"
+    t.decimal  "price_lb"
+    t.float    "insurance"
+    t.float    "profit"
+    t.decimal  "minimum_profit"
+    t.float    "commission"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "expenses", force: :cascade do |t|
     t.date     "date"
