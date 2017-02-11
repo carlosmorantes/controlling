@@ -2,13 +2,13 @@ class AmazonController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :update
   before_action :authenticate_user!
   def index
-    @amazon = Amazon.find(1)
+    @amazon = Amazon.find(3)
   end
 
   def update
     data = amazons_params(params)
     data.each do |k,v|
-      Amazon.update(1, k => v.to_s) if new_value(k, v)
+      Amazon.update(3, k => v.to_s) if new_value(k, v)
     end
     redirect_to :back
   end
