@@ -6,11 +6,35 @@
     </tr>
   </thead>
   <tbody>
-    <% @amazons.attributes.each do |k,v| %>
+    <% @amazon.attributes.each do |k,v| %>
+      <% next if k == 'created_at' || k == 'updated_at' || k == 'id' %>
       <tr>
         <td><%= k %></td>
-        <td><input type="text" value="<%= v %>"></td>
+        <form id="amazon-form">
+          <td><input name="<%= k %>"value="<%= v %>"></td>
+        </form>
       </tr>
     <%end%>
   </tbody>
+
 </table>
+<input id="send-form" type="button" value="Submit">
+
+<script>
+$(function(){
+  $("#send-form").click(function() {
+    var data = $('#amazon-form').serialize();
+    $.ajax({
+        url: "/amazon/update",
+        type: "post",
+        data : data
+    }).done(function (data) {
+        // Bei Erfolg
+    }).fail(function() {
+        // Bei Fehler
+    }).always(function() {
+        // Immer
+    });
+  });
+});
+</script>
