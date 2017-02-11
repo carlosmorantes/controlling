@@ -10,7 +10,7 @@
       <% next if k == 'created_at' || k == 'updated_at' || k == 'id' %>
       <tr>
         <td><%= k %></td>
-        <form id="amazon-form">
+        <form class="amazon-form">
           <td><input name="<%= k %>"value="<%= v %>"></td>
         </form>
       </tr>
@@ -23,7 +23,7 @@
 <script>
 $(function(){
   $("#send-form").click(function() {
-    var data = $('#amazon-form').serialize();
+    var data = $('.amazon-form').serialize();
     $.ajax({
         url: "/amazon/update",
         type: "post",
