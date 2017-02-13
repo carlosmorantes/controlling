@@ -1,3 +1,32 @@
+<div class="container">
+  <form class="calculate-form">
+    <div class="form-group row">
+      <label for="amazon-price" class="col-sm-2 col-form-label">Precio en Amazon</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="amazon-price" id="amazon-price" placeholder="Precio en Amazon">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="shipping-price" class="col-sm-2 col-form-label">Precio de envio</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="shipping-price" id="shipping-price" placeholder="Precio de envio">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="weight" class="col-sm-2 col-form-label">Preco</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" name="weight" id="weight" placeholder="Peso">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" id="calculate-price-btn">Calcular</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<br> 
 <table class="table table-hover table-bordered table-condensed table-responsive">
   <thead>
     <tr>
@@ -18,10 +47,26 @@
   </tbody>
 
 </table>
-<input id="send-form" type="button" value="Submit">
+<input class="btn btn-primary" id="send-form" type="button" value="Guardar">
 
 <script>
 $(function(){
+  $('#calculate-price-btn').click(function(ev){
+      var data = $('.calculate-form').serialize();
+      $.ajax({
+          url: "/amazon/calculate_price",
+          type: "post",
+          data : data
+      }).done(function (data) {
+          // Bei Erfolg
+      }).fail(function() {
+          // Bei Fehler
+      }).always(function() {
+          // Immer
+      });
+       ev.preventDefault();
+    });
+
   $("#send-form").click(function() {
     var data = $('.amazon-form').serialize();
     $.ajax({

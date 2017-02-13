@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'amazon/index' # link for Julio to calculate ML costs
   #post 'amazon/update/:id', to: 'amazon#update' # to pass a parameter
   post 'amazon/update', to: 'amazon#update', as: 'amazon_update'
+  post 'amazon/calculate_price', to: 'amazon#calculate_price', as: 'amazon_calculate_price'
+
 
 
 =begin RESTful

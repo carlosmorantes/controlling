@@ -1,6 +1,7 @@
 class AmazonController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :update
   before_action :authenticate_user!
+
   def index
     @amazon = Amazon.find(3)
   end
@@ -11,6 +12,11 @@ class AmazonController < ApplicationController
       Amazon.update(3, k => v.to_s) if new_value(k, v)
     end
     redirect_to :back
+  end
+
+  def calculate_price
+    redirect_to :back
+
   end
 
   private
