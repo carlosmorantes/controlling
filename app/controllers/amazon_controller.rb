@@ -22,10 +22,9 @@ class AmazonController < ApplicationController
     @total_insurance = shipping_insurance(@total_product_price)
     @total_freight = freight(weight)
     @total_taxes = taxes(@total_product_price)
-    price_in_pesos
-    # until here is ok
+    ml_product_total_price
+    # how to pass the result to the view?
     redirect_to :back
-
   end
 
   private
@@ -72,6 +71,31 @@ class AmazonController < ApplicationController
     nationalization * Amazon.find(3).bank_dollar_price.to_f
   end
 
+  def earnings
+    output = price_in_pesos * Amazon.find(3).profit.to_f / 100
+    if output < Amazon.find(3).minimum_profit.to_f
+      Amazon.find(3).minimum_profit.to_f
+    else
+      output
+    end
+  end
+
+  def possible_earnings
+    (Amazon.find(3).iva.to_f * earnings) / 100
+  end
+
+  def product_price_in_pesos
+    price_in_pesos + earnings + possible_earnings
+  end
+
+  def ml_commission
+    ml_product_total_price - product_price_in_pesos
+  end
+
+  def ml_product_total_price
+    commission = Amazon.find(3).commission.to_f / 100
+    product_price_in_pesos * (1 / (1 - commission))
+  end
 
 
 end
