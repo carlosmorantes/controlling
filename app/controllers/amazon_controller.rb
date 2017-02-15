@@ -1,5 +1,5 @@
 class AmazonController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => :update
+  skip_before_filter :verify_authenticity_token, :only => [:update, :calculate_price]
   before_action :authenticate_user!
 
   def index
@@ -22,9 +22,9 @@ class AmazonController < ApplicationController
     @total_insurance = shipping_insurance(@total_product_price)
     @total_freight = freight(weight)
     @total_taxes = taxes(@total_product_price)
-    ml_product_total_price
+    output = ml_product_total_price
     # how to pass the result to the view?
-    redirect_to :back
+    redirect_to amazon_index_path(final_price: output)
   end
 
   private

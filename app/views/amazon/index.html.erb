@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="calculate-form">
+  <form class="calculate-form" method="POST", action="/amazon/calculate_price">
     <div class="form-group row">
       <label for="amazon-price" class="col-sm-2 col-form-label">Precio en Amazon</label>
       <div class="col-sm-3">
@@ -28,9 +28,9 @@
 
 <h3>Resultados: </h3>
 <div class="form-group row">
-  <label for="weight" class="col-sm-2 col-form-label">MERCADOLIBRE</label>
-  <div class="col-sm-3">
-    <input type="text" class="form-control">
+  <label for="weight" class="col-sm-2 col-form-label">MERCADOLIBRE(Pesos)</label>
+  <div class="col-sm-3 col-sm-offset-1">
+    <input type="text" class="form-control" value="<%= number_to_currency(params[:final_price].to_f.round) %>">
   </div>
 </div
 
@@ -55,27 +55,12 @@
       </tr>
     <%end%>
   </tbody>
-
 </table>
+
 <input class="btn btn-primary" id="send-form" type="button" value="Guardar">
 
 <script>
 $(function(){
-  $('#calculate-price-btn').click(function(ev){
-      var data = $('.calculate-form').serialize();
-      $.ajax({
-          url: "/amazon/calculate_price",
-          type: "post",
-          data : data
-      }).done(function (data) {
-          // Bei Erfolg
-      }).fail(function() {
-          // Bei Fehler
-      }).always(function() {
-          // Immer
-      });
-       ev.preventDefault();
-    });
 
   $("#send-form").click(function() {
     var data = $('.amazon-form').serialize();
