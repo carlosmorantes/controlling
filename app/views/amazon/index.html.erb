@@ -37,6 +37,7 @@
 <br>
 <br>
 
+<% unless current_user.email == 'angy@carrillomarket.com' %>
 <table class="table table-hover table-bordered table-condensed table-responsive">
   <thead>
     <tr>
@@ -58,6 +59,7 @@
 </table>
 
 <input class="btn btn-primary" id="send-form" type="button" value="Guardar">
+<% end %>
 
 <script>
 $(function(){
