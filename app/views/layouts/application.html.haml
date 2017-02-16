@@ -12,7 +12,7 @@
       /menu
       .row
         .col-md-2
-          - if permission?
+          - if permission?('superadmin')
             %ul.nav.nav-pills.nav-stacked.red#menu-desktop
               %li.active
                 %a{:href => "/expenses/new"} Neu

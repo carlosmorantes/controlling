@@ -37,7 +37,7 @@
 <br>
 <br>
 
-<% unless current_user.email == 'angy@carrillomarket.com' %>
+<% if permission?('admin') || permission?('superadmin') %>
 <table class="table table-hover table-bordered table-condensed table-responsive">
   <thead>
     <tr>
