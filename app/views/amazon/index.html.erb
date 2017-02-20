@@ -1,21 +1,24 @@
 <div class="container">
-  <form class="calculate-form" method="POST", action="/amazon/calculate_price">
+  <form data-toggle="validator" role="form" class="calculate-form" method="POST", action="/amazon/calculate_price">
     <div class="form-group row">
       <label for="amazon-price" class="col-sm-2 col-form-label">Precio en Amazon</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="amazon_price" id="amazon-price" placeholder="Precio en Amazon">
+        <input class="form-control" name="amazon_price" id="amazon-price" placeholder="Precio en Amazon" data-error="Por favor introduzca el precio del producto" required>
+        <div class="help-block with-errors"></div>
       </div>
     </div>
     <div class="form-group row">
       <label for="shipping-price" class="col-sm-2 col-form-label">Precio de envio</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="shipping_price" id="shipping-price" placeholder="Precio de envio">
+        <input type="text" class="form-control" name="shipping_price" id="shipping-price" placeholder="Precio de envio" data-error="Por favor introduzca el precio del envio" required>
+        <div class="help-block with-errors"></div>
       </div>
     </div>
     <div class="form-group row">
       <label for="weight" class="col-sm-2 col-form-label">Peso</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" name="weight" id="weight" placeholder="Peso">
+        <input type="text" class="form-control" name="weight" id="weight" placeholder="Peso" data-error="Por favor introduzca el peso del producto" required>
+        <div class="help-block with-errors"></div>
       </div>
     </div>
     <div class="form-group row">
