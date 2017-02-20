@@ -1,7 +1,6 @@
 class AmazonController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:update, :calculate_price]
   before_action :authenticate_user!
-
   def index
     @amazon = Amazon.find(3)
   end
@@ -15,16 +14,21 @@ class AmazonController < ApplicationController
   end
 
   def calculate_price
-    amazon_price = params[:amazon_price].to_f
-    shipping = params[:shipping_price].to_f
-    weight = params[:weight].to_f
-    @total_product_price = total_price(amazon_price, shipping)
-    @total_insurance = shipping_insurance(@total_product_price)
-    @total_freight = freight(weight)
-    @total_taxes = taxes(@total_product_price)
-    output = ml_product_total_price
-    # how to pass the result to the view?
-    redirect_to amazon_index_path(final_price: output)
+    amazon_price = params[:amazon_price]
+    shipping = params[:shipping_price]
+    weight = params[:weight]
+    # number validation missing
+    if amazon_price.empty? || shipping.empty? || weight.empty?
+      redirect_to :back, alert: "Llene el formulario completamente"
+    else
+      @total_product_price = total_price(amazon_price.to_f, shipping.to_f)
+      @total_insurance = shipping_insurance(@total_product_price)
+      @total_freight = freight(weight.to_f)
+      @total_taxes = taxes(@total_product_price)
+      output = ml_product_total_price
+      # how to pass the result to the view?
+      redirect_to amazon_index_path(final_price: output)
+    end
   end
 
   private
