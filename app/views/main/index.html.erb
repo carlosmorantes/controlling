@@ -3,7 +3,7 @@
   <% if current_user.first_name.blank? %>
     <h1>Willkommen <%= current_user.email %></h1>
   <% else %>
-    <h1>Bienvenido <%= current_user.first_name.capitalize %></h1>
+    <h1>Bienvenid@ <%= current_user.first_name.capitalize %></h1>
     <p>Para calcular los costos de envio haga click <%= link_to 'aqui', amazon_index_path %></p>
   <% end %>
 <%end%>
