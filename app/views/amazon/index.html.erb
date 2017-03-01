@@ -37,7 +37,7 @@
 <br>
 <br>
 
-<% if permission?('admin') || permission?('superadmin') %>
+<% if policy(:user).amazon_table? %>
 <table class="table table-hover table-bordered table-condensed table-responsive">
   <thead>
     <tr>
