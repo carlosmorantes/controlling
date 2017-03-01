@@ -1,6 +1,5 @@
 class AmazonController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:update, :calculate_price]
-  before_action :authenticate_user!
   def index
     @amazon = Amazon.find(3)
   end

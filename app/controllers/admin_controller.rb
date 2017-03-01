@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
-  before_action :authenticate_user!
+  before_action :superadmin_authenticate
+
   def users
     @users = User.all
   end
