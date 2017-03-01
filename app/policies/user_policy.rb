@@ -1,17 +1,4 @@
-class UserPolicy
-  attr_reader :current_user, :model
-
-  def initialize(current_user, model)
-    @user = current_user
-    @model = model
-  end
-
-  def update?
-    @user.admin?
-  end
-
-  def amazon_table?
-    @user.admin? || @user.superadmin?
-  end
+# the idea is to change this method to expense but it did not work
+class UserPolicy < ApplicationPolicy
 
 end

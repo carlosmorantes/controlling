@@ -3,6 +3,7 @@ class ExpensesController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :authenticate_user!, except: [:index] # helper from devise
   before_action :set_expense, except: [:index, :new, :create]
+  before_action :superadmin_authenticate 
 
 
 
@@ -81,7 +82,5 @@ class ExpensesController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
-
-
 
 end

@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    new_user_session_path# your_path
+    new_user_session_path # your_path
   end
 
   private
@@ -24,8 +24,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # check the method superadmin in application_policy.rb
+  def superadmin_authenticate
+    authorize current_user, :superadmin?
+  end
+
   def configure_permitted_parameters
-  	registration_params = [:first_name, :email, :password, :password_confirmation]
+    registration_params = [:first_name, :email, :password, :password_confirmation]
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(registration_params) }
   end
 
