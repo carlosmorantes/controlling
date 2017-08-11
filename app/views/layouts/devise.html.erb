@@ -24,7 +24,7 @@
         <% if user_signed_in? %>
           <li><%= link_to "Abmelden" , destroy_user_session_path, method: :delete %></li>
         <%else%>
-          <!--<li ><%#= link_to "Konto erstellen", new_user_registration_path %></li> Avoid this until mailer is implemented-->
+          <li ><%= link_to "Konto erstellen", new_user_registration_path %></li>
           <li ><%= link_to "Anmelden", new_user_session_path %> <!--No es necesario poner el metodo GET--></li>
         <%end%>
       </ul>
