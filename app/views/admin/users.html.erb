@@ -5,6 +5,8 @@
         <th>Email</th>
         <th>Sign in count</th>
         <th>Last sign in at</th>
+        <th>Token sent at</th>
+        <th>Token confirmed at</th>
         <th>Role</th>
       </tr>
     </thead>
@@ -15,6 +17,8 @@
           <td><%= k.email %></td>
           <td><%= k.sign_in_count %></td>
           <td><%= k.last_sign_in_at %></td>
+          <td><%= k.confirmation_sent_at %></td>
+          <td><%= k.confirmed_at %></td>
           <td><%= k.role %></td>
         </tr>
       <%end%>
