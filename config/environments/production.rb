@@ -76,4 +76,18 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # set confirmation emails when registering with devise
+  config.action_mailer.default_url_options = {:host => 'monthbudget.herokuapp.com', :protocol => 'http'}
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+     :address => "smtp.gmail.com",
+     :port => 587,
+     :authentication => :plain,   # I've also tried :login
+     :enable_starttls_auto => true,  # Also tried tls => true
+     :user_name => 'appmonthbudget@gmail.com',
+     :password => 'MonthBudget2017'
+   } #I've also tried having the attribute :domain => 'myapp.herokuapp.com',
 end
