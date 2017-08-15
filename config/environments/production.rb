@@ -85,9 +85,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
      :address => "smtp.gmail.com",
      :port => 587,
-     :authentication => :plain,   # I've also tried :login
-     :enable_starttls_auto => true,  # Also tried tls => true
-     :user_name => 'appmonthbudget@gmail.com',
-     :password => 'MonthBudget2017'
-   } #I've also tried having the attribute :domain => 'myapp.herokuapp.com',
+     :authentication => :plain,   
+     :enable_starttls_auto => true,
+     :user_name => ENV['GMAIL_USERNAME'],
+     :password => ENV['GMAIL_PASSWORD']
+   }
 end
