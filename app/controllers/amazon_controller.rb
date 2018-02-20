@@ -26,7 +26,7 @@ class AmazonController < ApplicationController
       @total_taxes = taxes(@total_product_price)
       output = ml_product_total_price
       # how to pass the result to the view?
-      redirect_to amazon_index_path(final_price: output)
+      redirect_to amazon_index_path(final_price: output, total_earnings_pesos: earnings)
     end
   end
 

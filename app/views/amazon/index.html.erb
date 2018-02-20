@@ -28,11 +28,18 @@
 
 <h3>Resultados: </h3>
 <div class="form-group row">
-  <label for="weight" class="col-sm-2 col-form-label">MERCADOLIBRE(Pesos)</label>
+  <label for="weight" class="col-sm-2 col-form-label">Mercadolibre(COP)</label>
   <div class="col-sm-3 col-sm-offset-1">
     <input type="text" class="form-control" value="<%= number_to_currency(params[:final_price].to_f.round) %>">
   </div>
-</div
+</div>
+  <div class="form-group row">
+    <label for="weight" class="col-sm-2 col-form-label">Ganancia(COP)</label>
+    <div class="col-sm-3 col-sm-offset-1">
+      <input type="text" class="form-control" value="<%= number_to_currency(params[:total_earnings_pesos].to_f.round) %>">
+    </div>
+  </div>
+
 
 <br>
 <br>
