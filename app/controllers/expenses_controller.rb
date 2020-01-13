@@ -7,11 +7,11 @@ class ExpensesController < ApplicationController
   # GET /expenses
   def index
     month = params[:month]
-    days = get_number_of_days(month,2019)
+    days = get_number_of_days(month,2020)
     if month.present?
       @expenses = Expense.where("date >= :start_date AND date <= :end_date",
-                               start_date: '2019-'+month+'-01',
-                               end_date: '2019-'+month+'-'+days).order(sort_column+' '+sort_direction).page(params[:page]).per(10)
+                               start_date: '2020-'+month+'-01',
+                               end_date: '2020-'+month+'-'+days).order(sort_column+' '+sort_direction).page(params[:page]).per(10)
       @sum_per_month = @expenses.sum(:price)
     else
       @expenses = Expense.order(sort_column+' '+sort_direction).page(params[:page]).per(10)
